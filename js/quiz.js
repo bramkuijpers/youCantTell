@@ -2,77 +2,75 @@
    QUIZ.JS — Quiz state management and reveal logic
    You Can't Tell · Campaign Site · 2026
 
-   Renders a 6-image grid where users click to guess Real or AI.
-   Tracks score, reveals answer on click, shows comparison
-   against the survey average of 5.8/10 on completion.
+   Each card shows two buttons: "Real Photo" and "AI Generated".
+   The user must guess before the answer is revealed.
+   Score only increments on a correct guess.
    ============================================================ */
 
 /* ------------------------------------------------------------------
    QUIZ DATA
-   Each entry represents one image card in the quiz grid.
    isAI: true  → AI-generated image
    isAI: false → real photograph
    ------------------------------------------------------------------ */
 var QUIZ_DATA = [
   {
     id: 1,
-    src: 'https://picsum.photos/id/1018/600/400',
-    caption: 'Mountain valley at dusk',
+    src: 'assets/images/aigif1.gif',
+    caption: 'Portrait in low light',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'Hyper-saturated gradients and mirror-perfect reflections — a Midjourney signature.',
+    note: 'The skin texture is unnaturally smooth and the chiaroscuro lighting is too perfectly dramatic for a candid shot.',
   },
   {
     id: 2,
-    src: 'https://picsum.photos/id/1060/600/400',
-    caption: 'Golden field at sunrise',
+    src: 'assets/images/aigif2.gif',
+    caption: 'Burger close-up',
     isAI: false,
     reveal: 'Real Photo',
-    note: 'Organic bokeh blur, natural grain, and an imperfect horizon line.',
+    note: 'Natural depth of field, authentic food styling, and organic imperfections in the sesame seeds and lettuce edges.',
   },
   {
     id: 3,
-    src: 'https://picsum.photos/id/325/600/400',
-    caption: 'City skyline at night',
+    src: 'assets/images/aigif3.gif',
+    caption: 'Subway station',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'Impossible light scatter and architectural symmetry beyond real-world precision.',
+    note: 'The motion blur pattern and noise distribution are inconsistent with real long-exposure photography.',
   },
   {
     id: 4,
-    src: 'https://picsum.photos/id/1080/600/400',
-    caption: 'Forest path in autumn',
+    src: 'assets/images/aigif4.gif',
+    caption: 'Bowl on wooden surface',
     isAI: false,
     reveal: 'Real Photo',
-    note: 'Uneven lighting, authentic lens distortion, and natural depth of field.',
+    note: 'The ceramic glaze, natural wood grain variation, and ambient light reflection are all authentically captured.',
   },
   {
     id: 5,
-    src: 'https://picsum.photos/id/593/600/400',
-    caption: 'Calm ocean at twilight',
+    src: 'assets/images/aigif5.gif',
+    caption: 'Chickens in a field',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'The water texture is too uniform and the cloud edges too smooth for a real exposure.',
+    note: 'The feather detail and grass blades show characteristic AI generation artifacts — too sharp, too even.',
   },
   {
     id: 6,
-    src: 'https://picsum.photos/id/823/600/400',
-    caption: 'Cobblestone street in rain',
-    isAI: false,
-    reveal: 'Real Photo',
-    note: 'Candid perspective, irregular reflections, and real motion blur from rain.',
+    src: 'assets/images/aigif6.gif',
+    caption: 'Dartboard close-up',
+    isAI: true,
+    reveal: 'AI Generated',
+    note: 'The wire dividers are impossibly uniform and the cork texture is too perfect. No real board looks this pristine.',
   },
 ];
 
 /* ------------------------------------------------------------------
    QUIZ STATE
-   Tracks user progress through the quiz.
    ------------------------------------------------------------------ */
 var quizState = {
-  current: 0,       // index of next unanswered card (unused but available)
-  score: 0,         // number of correct guesses
-  answers: [],      // array of { id, guessedAI, isAI, correct }
-  total: QUIZ_DATA.length,
+  current:   0,
+  score:     0,
+  answers:   [],   // { id, guessedAI, isAI, correct }
+  total:     QUIZ_DATA.length,
   completed: false,
 };
 
@@ -89,13 +87,10 @@ var quizScoreLive  = null;
 var quizRetryBtn   = null;
 
 /* ------------------------------------------------------------------
-   MESSAGE LOOKUP
-   Score messages based on correct count out of 6.
+   SCORE MESSAGE
+   Based on correct guesses out of 6.
    ------------------------------------------------------------------ */
 function getScoreMessage(score) {
-  // Normalise score to /10 for comparison with survey
-  var outOf10 = Math.round((score / 6) * 10 * 10) / 10;
-
   if (score <= 2) {
     return '"You were fooled — but so were most people."';
   } else if (score <= 4) {
@@ -107,7 +102,8 @@ function getScoreMessage(score) {
 
 /* ------------------------------------------------------------------
    RENDER QUIZ GRID
-   Builds all quiz cards from QUIZ_DATA and injects into the DOM.
+   Cards show the image + two guess buttons. No click-to-reveal —
+   the user must pick Real or AI first.
    ------------------------------------------------------------------ */
 function renderQuizGrid() {
   if (!quizGrid) return;
@@ -118,37 +114,39 @@ function renderQuizGrid() {
     var card = document.createElement('div');
     card.className = 'quiz-card reveal reveal--delay-' + Math.min(index + 1, 4);
     card.setAttribute('role', 'listitem');
-    card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', 'Quiz image ' + (index + 1) + ': ' + item.caption + '. Click to reveal.');
     card.setAttribute('data-id', item.id);
 
     card.innerHTML =
       '<div class="quiz-card__inner">' +
-        // FRONT — the image
+
+        // FRONT — image + guess buttons
         '<div class="quiz-card__front">' +
           '<img src="' + item.src + '" alt="' + item.caption + '" loading="lazy" />' +
           '<div class="quiz-card__caption">' + item.caption + '</div>' +
-          '<div class="quiz-card__hint" aria-hidden="true">?</div>' +
+          '<div class="quiz-card__buttons">' +
+            '<button class="quiz-btn quiz-btn--real" data-guess="real" aria-label="Guess: Real photo">📷 Real</button>' +
+            '<button class="quiz-btn quiz-btn--ai"   data-guess="ai"   aria-label="Guess: AI generated">🤖 AI</button>' +
+          '</div>' +
         '</div>' +
-        // BACK — the reveal (initially hidden via 3D flip)
+
+        // BACK — answer reveal (shown after guess)
         '<div class="quiz-card__back quiz-card__back--' + (item.isAI ? 'ai' : 'real') + '">' +
+          '<div class="quiz-card__correctness" id="correctness-' + item.id + '"></div>' +
           '<div class="quiz-card__result-icon" aria-hidden="true">' + (item.isAI ? '🤖' : '📷') + '</div>' +
           '<div class="quiz-card__result-label">' + item.reveal + '</div>' +
           '<div class="quiz-card__result-note">' + item.note + '</div>' +
         '</div>' +
+
       '</div>';
 
-    // Click handler — reveal card and score guess
-    card.addEventListener('click', function () {
-      handleCardClick(card, item);
-    });
-
-    // Keyboard support
-    card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleCardClick(card, item);
-      }
+    // Bind guess buttons
+    var buttons = card.querySelectorAll('.quiz-btn');
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation(); // prevent card-level listeners
+        var guessedAI = btn.getAttribute('data-guess') === 'ai';
+        handleGuess(card, item, guessedAI);
+      });
     });
 
     quizGrid.appendChild(card);
@@ -156,57 +154,61 @@ function renderQuizGrid() {
 }
 
 /* ------------------------------------------------------------------
-   HANDLE CARD CLICK
-   Reveals the card, records the answer, updates score.
-   Note: since there's no "guess" step (users just click to reveal),
-   every click counts as "correct" conceptually for engagement,
-   but the actual scoring is based on how many the user can identify
-   before clicking — we flip the card and show real/AI immediately.
-   To add explicit guessing, a two-step flow would be needed.
+   HANDLE GUESS
+   Called when the user clicks Real or AI on a card.
+   Reveals the answer, marks correct/wrong, updates score.
    ------------------------------------------------------------------ */
-function handleCardClick(card, item) {
+function handleGuess(card, item, guessedAI) {
   // Guard: already answered
   if (card.classList.contains('is-answered')) return;
 
-  // Mark as answered and trigger flip animation
-  card.classList.add('is-answered', 'is-revealed');
-  card.setAttribute('aria-label', item.caption + ' — ' + item.reveal + '. ' + item.note);
+  var correct = (guessedAI === item.isAI);
 
-  // For scoring purposes: if user clicks, we consider them having
-  // "seen" the card. We auto-score based on reveal (demonstration mode).
-  // In full quiz mode you'd ask guess first; here all cards contribute.
+  // Record answer
   quizState.answers.push({
-    id: item.id,
-    isAI: item.isAI,
-    correct: true, // reveal-on-click mode — no wrong answers possible
+    id:        item.id,
+    guessedAI: guessedAI,
+    isAI:      item.isAI,
+    correct:   correct,
   });
 
-  // Increment score counter (all 6 are correct since it's reveal-mode)
-  quizState.score++;
+  if (correct) quizState.score++;
   quizState.current++;
 
-  // Update live score display
+  // Show correct/wrong badge on the card back
+  var badge = card.querySelector('#correctness-' + item.id);
+  if (badge) {
+    badge.textContent  = correct ? '✓ Correct' : '✗ Wrong';
+    badge.className    = 'quiz-card__correctness quiz-card__correctness--' + (correct ? 'correct' : 'wrong');
+  }
+
+  // Flip card to reveal answer
+  card.classList.add('is-answered', 'is-revealed');
+  card.setAttribute('aria-label', item.caption + ' — ' + item.reveal + '. ' + (correct ? 'You got it right.' : 'You got it wrong.'));
+
+  // Update live score
   updateLiveScore();
 
-  // Check if all cards answered
+  // All cards answered → show result
   if (quizState.answers.length === quizState.total) {
-    setTimeout(showResult, 600);
+    setTimeout(showResult, 700);
   }
 }
 
 /* ------------------------------------------------------------------
-   UPDATE LIVE SCORE COUNTER
-   Shows X / 6 in the score bar above the grid.
+   UPDATE LIVE SCORE
+   Shows "X correct / Y answered" in the score bar.
    ------------------------------------------------------------------ */
 function updateLiveScore() {
   if (quizScoreLive) {
-    quizScoreLive.textContent = quizState.score + ' / ' + quizState.total;
+    var answered = quizState.answers.length;
+    quizScoreLive.textContent = quizState.score + ' correct — ' + answered + ' / ' + quizState.total + ' revealed';
   }
 }
 
 /* ------------------------------------------------------------------
    SHOW RESULT
-   Displays the final score panel with comparison to survey average.
+   Displays final score panel with comparison to survey average.
    ------------------------------------------------------------------ */
 function showResult() {
   quizState.completed = true;
@@ -215,23 +217,22 @@ function showResult() {
 
   var score    = quizState.score;
   var outOf10  = Math.round((score / 6) * 10 * 10) / 10; // normalised to /10
-  var pctWidth = Math.round((score / 6) * 100);           // bar width %
+  var pctWidth = Math.round((score / 6) * 100);
 
-  // Populate result elements
   if (quizScoreValue) quizScoreValue.textContent = score;
   if (quizMessage)    quizMessage.textContent     = getScoreMessage(score);
   if (quizYouValue)   quizYouValue.textContent    = outOf10 + '/10';
 
-  // Show the result panel
   quizResult.style.display = 'block';
   quizResult.classList.add('is-visible');
 
-  // Animate "You" bar width after a short delay
-  if (quizYouBar) {
-    setTimeout(function () {
-      quizYouBar.style.width = pctWidth + '%';
-    }, 400);
-  }
+  // Animate bars after short delay
+  setTimeout(function () {
+    if (quizYouBar) quizYouBar.style.width = pctWidth + '%';
+
+    var avgBar = document.getElementById('quizAvgBar');
+    if (avgBar) avgBar.style.width = '58%';
+  }, 400);
 
   // Scroll to result
   if (window.lenisInstance) {
@@ -243,7 +244,6 @@ function showResult() {
 
 /* ------------------------------------------------------------------
    RESET QUIZ
-   Resets state and re-renders all cards.
    ------------------------------------------------------------------ */
 function resetQuiz() {
   quizState.current   = 0;
@@ -251,27 +251,23 @@ function resetQuiz() {
   quizState.answers   = [];
   quizState.completed = false;
 
-  // Hide result panel
   if (quizResult) {
     quizResult.style.display = 'none';
     quizResult.classList.remove('is-visible');
   }
 
-  // Reset live score
   if (quizScoreLive) quizScoreLive.textContent = '0 / 6';
+  if (quizYouBar)    quizYouBar.style.width     = '0%';
 
-  // Reset bar
-  if (quizYouBar) quizYouBar.style.width = '0%';
+  var avgBar = document.getElementById('quizAvgBar');
+  if (avgBar) avgBar.style.width = '0%';
 
-  // Re-render grid
   renderQuizGrid();
 
-  // Re-observe new cards for reveal animation
   if (typeof initRevealObserver === 'function') {
     initRevealObserver();
   }
 
-  // Scroll back to quiz top
   var quizSection = document.getElementById('quiz');
   if (quizSection) {
     if (window.lenisInstance) {
@@ -284,7 +280,6 @@ function resetQuiz() {
 
 /* ------------------------------------------------------------------
    INIT
-   Caches DOM refs, renders the grid, binds the retry button.
    ------------------------------------------------------------------ */
 function initQuiz() {
   quizGrid       = document.getElementById('quizGrid');
@@ -305,7 +300,6 @@ function initQuiz() {
   }
 }
 
-// Auto-init
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initQuiz);
 } else {

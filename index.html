@@ -11,10 +11,10 @@
 
   <title>You Can't Tell — AI on Social Media · 2026</title>
 
-  <!-- Google Fonts: Playfair Display + Inter -->
+  <!-- Google Fonts: Playfair Display + Plus Jakarta Sans + IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="css/reset.css" />
@@ -45,6 +45,38 @@
        SECTION 1 — HERO
   ============================================================ -->
   <section class="section section--hero" id="hero" aria-labelledby="hero-title">
+
+    <!-- Ambient orbs -->
+    <div class="hero__orb hero__orb--orange" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--purple" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--pink"   aria-hidden="true"></div>
+
+    <!-- Dot grid -->
+    <div class="hero__dot-grid" aria-hidden="true"></div>
+
+    <!-- Expanding rings -->
+    <div class="hero__rings" aria-hidden="true">
+      <div class="hero__ring hero__ring--1"></div>
+      <div class="hero__ring hero__ring--2"></div>
+      <div class="hero__ring hero__ring--3"></div>
+      <div class="hero__ring hero__ring--4"></div>
+    </div>
+
+    <!-- Floating particles -->
+    <div class="hero__particles" aria-hidden="true">
+      <div class="hero__particle hero__particle--sm"></div>
+      <div class="hero__particle hero__particle--md"></div>
+      <div class="hero__particle hero__particle--sm"></div>
+      <div class="hero__particle hero__particle--lg"></div>
+      <div class="hero__particle hero__particle--sm"></div>
+      <div class="hero__particle hero__particle--md"></div>
+      <div class="hero__particle hero__particle--sm"></div>
+      <div class="hero__particle hero__particle--lg"></div>
+      <div class="hero__particle hero__particle--sm"></div>
+      <div class="hero__particle hero__particle--md"></div>
+      <div class="hero__particle hero__particle--sm"></div>
+      <div class="hero__particle hero__particle--sm"></div>
+    </div>
 
     <div class="hero__bg-text" aria-hidden="true">AI</div>
 
@@ -91,6 +123,38 @@
        SECTION 2 — KEY STAT (76%)
   ============================================================ -->
   <section class="section section--stat" id="keystat" aria-labelledby="keystat-title">
+
+    <!-- Circuit background + decorative cards -->
+    <div class="circuit-bg" aria-hidden="true"></div>
+
+    <div class="float-card float-card--orange" aria-hidden="true"
+      style="top: 12%; right: 6%; --fc-dur: 9s; --fc-delay: 0s;">
+      <div class="float-card__eyebrow"><span class="float-card__dot"></span>Platform</div>
+      <div class="float-card__value">61%</div>
+      <div class="float-card__label">distrust TikTok most</div>
+    </div>
+
+    <div class="float-card" aria-hidden="true"
+      style="top: 52%; right: 3%; --fc-dur: 12s; --fc-delay: 1.5s;">
+      <div class="float-card__eyebrow"><span class="float-card__dot"></span>Self-score</div>
+      <div class="float-card__value">4/5</div>
+      <div class="float-card__label">avg. self-assessment</div>
+    </div>
+
+    <div class="float-card float-card--blue" aria-hidden="true"
+      style="bottom: 14%; right: 18%; --fc-dur: 10s; --fc-delay: 3s;">
+      <div class="float-card__eyebrow"><span class="float-card__dot"></span>Quiz avg.</div>
+      <div class="float-card__value">5.8</div>
+      <div class="float-card__label">actual score / 10</div>
+    </div>
+
+    <div class="circuit-dot" aria-hidden="true"
+      style="top: 28%; right: 22%; --cd-delay: 0s;"></div>
+    <div class="circuit-dot circuit-dot--orange" aria-hidden="true"
+      style="top: 68%; right: 8%; --cd-delay: 1.2s;"></div>
+    <div class="circuit-dot" aria-hidden="true"
+      style="bottom: 20%; right: 32%; --cd-delay: 2.4s;"></div>
+
     <div class="container">
 
       <div class="stat-block reveal">
@@ -106,7 +170,7 @@
             </h2>
             <p class="stat-block__body">
               Three in four people have already navigated a conversation about
-              misinformation. The other quarter hasn't — yet.
+              misinformation. The other quarter hasn't, not yet.
             </p>
           </div>
         </div>
@@ -130,11 +194,11 @@
       <div class="section__header reveal">
         <p class="section__eyebrow">The Confidence Gap</p>
         <h2 class="section__title" id="gap-title">
-          We think we're worse<br />than we actually are.
+          We think we're better<br />than we actually are.
         </h2>
         <p class="section__subtitle">
-          People underestimated themselves by 1.8 points on average.
-          The real risk isn't overconfidence — it's not knowing what you're capable of.
+          People rated themselves 4 out of 5, which normalises to 8/10.
+          But the actual quiz average was only 5.8/10, an overestimation of 2.2 points.
         </p>
       </div>
 
@@ -142,11 +206,12 @@
 
         <div class="gap-comparison__side reveal reveal-left">
           <p class="gap-comparison__label">How good do you<br />think you are?</p>
-          <div class="gap-comparison__number-wrap" aria-label="4.0 out of 10">
-            <span class="stat-number gap-number" data-target="4.0" data-decimals="1">0</span>
-            <span class="gap-comparison__unit" aria-hidden="true">/10</span>
+          <div class="gap-comparison__number-wrap" aria-label="4 out of 5">
+            <span class="stat-number gap-number" data-target="4" data-decimals="0">0</span>
+            <span class="gap-comparison__unit" aria-hidden="true">/5</span>
           </div>
           <p class="gap-comparison__sublabel">Self-assessed score</p>
+          <p class="gap-comparison__scale-note">≈ 8.0 / 10 normalized</p>
         </div>
 
         <div class="gap-comparison__divider reveal">
@@ -159,8 +224,8 @@
             </svg>
           </div>
           <div class="gap-comparison__delta">
-            <span class="gap-comparison__delta-value">+1.8</span>
-            <span class="gap-comparison__delta-label">points<br />reality gap</span>
+            <span class="gap-comparison__delta-value gap-comparison__delta-value--negative">&minus;2.2</span>
+            <span class="gap-comparison__delta-label">points<br />overestimated</span>
           </div>
         </div>
 
@@ -171,12 +236,13 @@
             <span class="gap-comparison__unit gap-comparison__unit--accent" aria-hidden="true">/10</span>
           </div>
           <p class="gap-comparison__sublabel">Actual quiz score</p>
+          <p class="gap-comparison__scale-note">&nbsp;</p>
         </div>
 
       </div>
 
       <p class="gap-comparison__footnote reveal">
-        Based on 38 survey respondents &mdash; Fontys ICT, March–April 2026
+        Based on 38 survey respondents, Fontys ICT, March–April 2026
       </p>
 
     </div>
@@ -191,7 +257,7 @@
       <div class="section__header reveal">
         <p class="section__eyebrow">Platform Trust</p>
         <h2 class="section__title" id="trust-title">
-          TikTok tops the<br />distrust list — by far.
+          TikTok tops the<br />distrust list. By far.
         </h2>
         <p class="section__subtitle">
           When asked which platform they trust the least for authentic content,
@@ -218,7 +284,7 @@
         <h2 class="section__title" id="quiz-title">Real or AI?</h2>
         <p class="section__subtitle">
           Click each image to reveal whether it's a real photograph or AI-generated.
-          The survey average was <strong>5.8/10</strong> — can you beat it?
+          The survey average was <strong>5.8/10</strong>. Can you beat it?
         </p>
       </div>
 
@@ -277,6 +343,18 @@
        SECTION 6 — FINDINGS (3 charts)
   ============================================================ -->
   <section class="section section--findings" id="findings" aria-labelledby="findings-title">
+
+    <div class="circuit-bg" aria-hidden="true"></div>
+
+    <div class="circuit-dot" aria-hidden="true"
+      style="top: 8%; left: 5%; --cd-delay: 0s;"></div>
+    <div class="circuit-dot circuit-dot--orange" aria-hidden="true"
+      style="top: 8%; right: 5%; --cd-delay: 0.8s;"></div>
+    <div class="circuit-dot" aria-hidden="true"
+      style="bottom: 10%; left: 8%; --cd-delay: 1.6s;"></div>
+    <div class="circuit-dot circuit-dot--orange" aria-hidden="true"
+      style="bottom: 10%; right: 8%; --cd-delay: 2.4s;"></div>
+
     <div class="container">
 
       <div class="section__header reveal">

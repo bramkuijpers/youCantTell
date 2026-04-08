@@ -258,6 +258,66 @@
   filter: blur(4px);
 }
 
+/* ===== FLOAT CARD =====
+   Glassmorphism cards drift gently, each with unique path.
+   ============================================================ */
+@keyframes floatCard {
+  0%   { transform: translateY(0)    translateX(0)   rotate(0deg); }
+  20%  { transform: translateY(-10px) translateX(4px)  rotate(0.4deg); }
+  45%  { transform: translateY(-18px) translateX(-3px) rotate(-0.5deg); }
+  70%  { transform: translateY(-8px)  translateX(6px)  rotate(0.3deg); }
+  100% { transform: translateY(0)    translateX(0)   rotate(0deg); }
+}
+
+/* ===== CIRCUIT SCAN =====
+   Horizontal light sweep across the circuit grid.
+   ============================================================ */
+@keyframes circuitScan {
+  0%   { left: -60%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 140%; opacity: 0; }
+}
+
+/* ===== CIRCUIT PULSE =====
+   Glowing dots that breathe on the circuit grid intersections.
+   ============================================================ */
+@keyframes circuitPulse {
+  0%, 100% { opacity: 0.35; transform: scale(1);   box-shadow: 0 0 6px  var(--color-accent-glow, rgba(139,111,232,0.3)); }
+  50%       { opacity: 1;    transform: scale(1.5); box-shadow: 0 0 22px var(--color-accent-glow, rgba(139,111,232,0.6)); }
+}
+
+/* ===== ORB FLOAT =====
+   Large ambient background orbs drift slowly.
+   ============================================================ */
+@keyframes orbFloat {
+  0%   { transform: translate(0,    0)    scale(1);    }
+  25%  { transform: translate(24px, -18px) scale(1.04); }
+  50%  { transform: translate(-16px, 22px) scale(0.97); }
+  75%  { transform: translate(12px, -8px)  scale(1.02); }
+  100% { transform: translate(0,    0)    scale(1);    }
+}
+
+/* ===== RING EXPAND =====
+   Expanding ripple rings that fade out as they grow.
+   ============================================================ */
+@keyframes ringExpand {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  60%  { opacity: 0.1; }
+  100% { transform: scale(2.2); opacity: 0;   }
+}
+
+/* ===== PARTICLE FLOAT =====
+   Small dots that drift and twinkle.
+   ============================================================ */
+@keyframes particleFloat {
+  0%, 100% { transform: translateY(0)    translateX(0);   opacity: 0.55; }
+  20%       { opacity: 0.9; }
+  40%       { transform: translateY(-22px) translateX(8px);  opacity: 0.4; }
+  60%       { opacity: 0.75; }
+  80%       { transform: translateY(-10px) translateX(-6px); opacity: 0.9; }
+}
+
 /* ===== REDUCED MOTION OVERRIDES ===== */
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -293,5 +353,14 @@
   .bar-fill {
     width: var(--bar-width, 0%);
     transition: none;
+  }
+
+  .hero__orb,
+  .hero__ring,
+  .hero__particle,
+  .float-card,
+  .circuit-dot,
+  .circuit-bg::before {
+    animation: none;
   }
 }
