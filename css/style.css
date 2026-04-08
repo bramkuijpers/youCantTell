@@ -14,6 +14,8 @@
   /* Accent palette */
   --color-accent-purple:     #8B6FE8;
   --color-accent-blue:       #4A9EF5;
+  --color-accent-yellow:     #ffed00;
+  --color-accent-yellow-dim: rgba(255, 237, 0, 0.15);
   --color-accent-orange:     #F97316;
   --color-accent-orange-alt: #FB923C;
   --color-accent-purple-dim: rgba(139, 111, 232, 0.12);
@@ -265,10 +267,11 @@ body {
 
 .hero__title-line:nth-child(3) {
   padding-left: clamp(56px, 10vw, 160px);
-  background: linear-gradient(120deg, var(--color-accent-blue) 0%, var(--color-accent-purple) 100%);
+  background: linear-gradient(120deg, var(--color-accent-yellow) 0%, #ffc400 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 24px rgba(255, 237, 0, 0.35));
 }
 
 .hero__subtitle {
@@ -555,16 +558,18 @@ body {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--color-accent-orange) 0%, var(--color-accent-orange-alt) 100%);
-  color: #fff;
+  background: var(--color-accent-yellow);
+  color: #0a0812;
   border-color: transparent;
-  box-shadow: 0 0 28px var(--color-accent-orange-glow), inset 0 1px 0 rgba(255,255,255,0.15);
+  font-weight: 700;
+  box-shadow: 0 0 28px rgba(255, 237, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.2);
 }
 
 .btn--primary:hover {
-  box-shadow: 0 0 52px var(--color-accent-orange-glow), 0 8px 24px rgba(249, 115, 22, 0.3);
+  background: #fff176;
+  box-shadow: 0 0 52px rgba(255, 237, 0, 0.55), 0 8px 24px rgba(255, 237, 0, 0.25);
   transform: translateY(-2px);
-  background: linear-gradient(135deg, var(--color-accent-orange-alt) 0%, var(--color-accent-orange) 100%);
+  color: #0a0812;
 }
 
 .btn--ghost {

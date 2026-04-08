@@ -133,7 +133,8 @@
 }
 
 .gap-number--accent {
-  color: var(--color-accent-blue);
+  color: var(--color-accent-yellow);
+  text-shadow: 0 0 32px rgba(255, 237, 0, 0.3);
 }
 
 .gap-comparison__unit {
@@ -146,7 +147,7 @@
 }
 
 .gap-comparison__unit--accent {
-  color: rgba(74, 158, 245, 0.5);
+  color: rgba(255, 237, 0, 0.45);
 }
 
 .gap-comparison__sublabel {
@@ -532,7 +533,7 @@
 }
 
 .quiz-card__back--real .quiz-card__result-label {
-  color: var(--color-accent-blue);
+  color: var(--color-accent-yellow);
 }
 
 .quiz-card__back--ai .quiz-card__result-label {
@@ -862,7 +863,8 @@
 
 .cta__headline em {
   font-style: italic;
-  color: var(--color-accent-blue);
+  color: var(--color-accent-yellow);
+  text-shadow: 0 0 28px rgba(255, 237, 0, 0.25);
 }
 
 .cta__question {
