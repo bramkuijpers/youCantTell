@@ -1,0 +1,297 @@
+/* ============================================================
+   ANIMATIONS.CSS — All GSAP and CSS animation classes
+   You Can't Tell · Campaign Site · 2026
+   ============================================================ */
+
+/* ===== REVEAL ANIMATIONS (initial hidden state) =====
+   Elements start hidden; GSAP + ScrollTrigger adds .is-visible
+   when they enter the viewport. CSS transitions handle the
+   actual animation to avoid FOUC.
+   ============================================================ */
+
+/* Base reveal — fade up */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+/* Slide from left */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+/* Slide from right */
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.85s var(--ease-out), transform 0.85s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+/* Visible state — applies to all reveal variants */
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+/* Stagger delays */
+.reveal--delay-1 { transition-delay: 0.12s; }
+.reveal--delay-2 { transition-delay: 0.24s; }
+.reveal--delay-3 { transition-delay: 0.36s; }
+.reveal--delay-4 { transition-delay: 0.52s; }
+
+/* Cascade delay for children (used via nth-child in components) */
+.reveal-cascade > *:nth-child(1) { transition-delay: 0.0s;  }
+.reveal-cascade > *:nth-child(2) { transition-delay: 0.1s;  }
+.reveal-cascade > *:nth-child(3) { transition-delay: 0.2s;  }
+.reveal-cascade > *:nth-child(4) { transition-delay: 0.3s;  }
+.reveal-cascade > *:nth-child(5) { transition-delay: 0.4s;  }
+.reveal-cascade > *:nth-child(6) { transition-delay: 0.5s;  }
+
+/* ===== STAT NUMBERS =====
+   Targeted by countup.js — these are the large animated figures.
+   Visual treatment only here; countup.js handles the number logic.
+   ============================================================ */
+.stat-number {
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  display: inline-block;
+}
+
+/* ===== PIN SECTION =====
+   Used by GSAP ScrollTrigger pinning.
+   Applied to section containers that get pinned during scroll.
+   ============================================================ */
+.pin-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ===== LINE DRAW =====
+   SVG path animation — lines "draw" themselves in on scroll.
+   Apply to <path> or <line> elements inside SVGs.
+   JS sets stroke-dasharray and stroke-dashoffset via GSAP.
+   ============================================================ */
+.line-draw {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.2s var(--ease-out);
+}
+
+.line-draw.is-drawn {
+  stroke-dashoffset: 0;
+}
+
+/* ===== HERO ENTRANCE ANIMATIONS =====
+   The hero title runs its own CSS keyframe animation on load,
+   independent of scroll triggers.
+   ============================================================ */
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTitleReveal {
+  from {
+    opacity: 0;
+    transform: translateY(50px) skewY(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) skewY(0deg);
+  }
+}
+
+/* ===== CHART BAR GROW =====
+   Horizontal bars animate width from 0 to target.
+   Used for the platform trust bar chart rows.
+   ============================================================ */
+.bar-fill {
+  width: 0;
+  transition: width 1.2s var(--ease-out);
+}
+
+.bar-fill.is-grown {
+  width: var(--bar-width, 0%);
+}
+
+/* ===== COUNTER SCALE-IN =====
+   Stat numbers scale in slightly as they count up.
+   ============================================================ */
+@keyframes countScaleIn {
+  0%   { transform: scale(0.92); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.stat-number.counting {
+  animation: countScaleIn 0.4s var(--ease-out) forwards;
+}
+
+/* ===== QUIZ CARD FLIP =====
+   CSS 3D flip for quiz card reveal.
+   ============================================================ */
+.quiz-card {
+  perspective: 800px;
+}
+
+.quiz-card__inner {
+  transform-style: preserve-3d;
+  transition: transform 0.55s var(--ease-in-out);
+  position: relative;
+}
+
+.quiz-card.is-revealed .quiz-card__inner {
+  transform: rotateY(180deg);
+}
+
+.quiz-card__front,
+.quiz-card__back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.quiz-card__back {
+  transform: rotateY(180deg);
+  position: absolute;
+  inset: 0;
+}
+
+/* ===== QUIZ CARD SHAKE (wrong guess feedback) ===== */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.quiz-card.shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ===== TIMELINE NODE PULSE ===== */
+@keyframes nodePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(123, 111, 232, 0.4); }
+  50%       { box-shadow: 0 0 0 8px rgba(123, 111, 232, 0); }
+}
+
+.timeline__node--dominant .timeline__node-dot {
+  animation: nodePulse 2.4s ease-in-out infinite;
+}
+
+/* ===== GLOW PULSE (accents) ===== */
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(123, 111, 232, 0.15); }
+  50%       { text-shadow: 0 0 40px rgba(123, 111, 232, 0.35), 0 0 80px rgba(74, 158, 245, 0.15); }
+}
+
+.gap-number--accent {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ===== PROGRESS LINE ANIMATION ===== */
+@keyframes progressLine {
+  from { width: 0%; }
+  to   { width: var(--target-width, 100%); }
+}
+
+.stat-block__bar-fill {
+  animation: none;
+}
+
+.stat-block__bar-fill.is-animated {
+  animation: progressLine 1.4s var(--ease-out) forwards;
+}
+
+/* ===== RESULT REVEAL ===== */
+@keyframes resultSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.quiz-result.is-visible {
+  animation: resultSlideUp 0.6s var(--ease-out) forwards;
+}
+
+/* ===== NAV FADE ===== */
+@keyframes navFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav {
+  animation: navFadeIn 0.8s var(--ease-out) 0.2s both;
+}
+
+/* ===== SCROLL PROGRESS SHIMMER ===== */
+.scroll-progress::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 40px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
+  filter: blur(4px);
+}
+
+/* ===== REDUCED MOTION OVERRIDES ===== */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .line-draw {
+    stroke-dashoffset: 0;
+    transition: none;
+  }
+
+  .quiz-card__inner {
+    transition: none;
+  }
+
+  .timeline__node--dominant .timeline__node-dot {
+    animation: none;
+  }
+
+  .gap-number--accent {
+    animation: none;
+  }
+
+  .hero__eyebrow-dot,
+  .hero__scroll-wheel {
+    animation: none;
+  }
+
+  .bar-fill {
+    width: var(--bar-width, 0%);
+    transition: none;
+  }
+}

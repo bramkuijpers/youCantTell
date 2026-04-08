@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="You Can't Tell — a study on AI-generated content and social media literacy. 38 respondents, Fontys ICT, March–April 2026." />
+  <meta name="theme-color" content="#080808" />
+  <meta property="og:title"       content="You Can't Tell" />
+  <meta property="og:description" content="76% of people have had to correct someone sharing fake content. Could you tell the difference?" />
+  <meta property="og:type"        content="website" />
+
+  <title>You Can't Tell — AI on Social Media · 2026</title>
+
+  <!-- Google Fonts: Playfair Display + Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+
+<body>
+
+  <!-- Grain overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" id="mainNav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">You Can't Tell</a>
+      <span class="nav__tag">AI &middot; Social Media &middot; 2026</span>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+  ============================================================ -->
+  <section class="section section--hero" id="hero" aria-labelledby="hero-title">
+
+    <div class="hero__bg-text" aria-hidden="true">AI</div>
+
+    <div class="hero__lines" aria-hidden="true">
+      <div class="hero__line"></div>
+      <div class="hero__line"></div>
+      <div class="hero__line"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero__content">
+
+        <p class="hero__eyebrow">
+          <span class="hero__eyebrow-dot" aria-hidden="true"></span>
+          Survey &middot; March–April 2026 &middot; 38 respondents
+        </p>
+
+        <h1 class="hero__title" id="hero-title">
+          <span class="hero__title-line">You</span>
+          <span class="hero__title-line">Can't</span>
+          <span class="hero__title-line">Tell.</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          76% of people have had to correct someone sharing fake content.<br />
+          Could <em>you</em> tell the difference?
+        </p>
+
+        <div class="hero__scroll-indicator" aria-hidden="true">
+          <div class="hero__scroll-mouse">
+            <div class="hero__scroll-wheel"></div>
+          </div>
+          <span>Scroll to explore</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="hero__gradient" aria-hidden="true"></div>
+
+  </section>
+
+  <!-- ============================================================
+       SECTION 2 — KEY STAT (76%)
+  ============================================================ -->
+  <section class="section section--stat" id="keystat" aria-labelledby="keystat-title">
+    <div class="container">
+
+      <div class="stat-block reveal">
+
+        <div class="stat-block__row">
+          <div class="stat-block__number" aria-label="76 percent">
+            <span class="stat-number" data-target="76">0</span>
+            <span class="stat-block__percent" aria-hidden="true">%</span>
+          </div>
+          <div class="stat-block__text">
+            <h2 class="stat-block__heading" id="keystat-title">
+              has had to point out fake content to someone
+            </h2>
+            <p class="stat-block__body">
+              Three in four people have already navigated a conversation about
+              misinformation. The other quarter hasn't — yet.
+            </p>
+          </div>
+        </div>
+
+        <!-- Dot matrix: 76 filled, 24 empty — rendered by main.js -->
+        <div class="stat-block__visual" aria-hidden="true">
+          <div class="stat-block__dots"></div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3 — THE GAP (4.0 vs 5.8)
+  ============================================================ -->
+  <section class="section section--gap" id="thegap" aria-labelledby="gap-title">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">The Confidence Gap</p>
+        <h2 class="section__title" id="gap-title">
+          We think we're worse<br />than we actually are.
+        </h2>
+        <p class="section__subtitle">
+          People underestimated themselves by 1.8 points on average.
+          The real risk isn't overconfidence — it's not knowing what you're capable of.
+        </p>
+      </div>
+
+      <div class="gap-comparison">
+
+        <div class="gap-comparison__side reveal reveal-left">
+          <p class="gap-comparison__label">How good do you<br />think you are?</p>
+          <div class="gap-comparison__number-wrap" aria-label="4.0 out of 10">
+            <span class="stat-number gap-number" data-target="4.0" data-decimals="1">0</span>
+            <span class="gap-comparison__unit" aria-hidden="true">/10</span>
+          </div>
+          <p class="gap-comparison__sublabel">Self-assessed score</p>
+        </div>
+
+        <div class="gap-comparison__divider reveal">
+          <div class="gap-comparison__connector" aria-hidden="true">
+            <svg class="gap-arrow" viewBox="0 0 120 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path class="line-draw" d="M 8 30 L 102 30"
+                stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="round" />
+              <path class="line-draw" d="M 88 18 L 104 30 L 88 42"
+                stroke="rgba(255,255,255,0.2)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="gap-comparison__delta">
+            <span class="gap-comparison__delta-value">+1.8</span>
+            <span class="gap-comparison__delta-label">points<br />reality gap</span>
+          </div>
+        </div>
+
+        <div class="gap-comparison__side gap-comparison__side--right reveal reveal-right">
+          <p class="gap-comparison__label">How good are<br />you actually?</p>
+          <div class="gap-comparison__number-wrap" aria-label="5.8 out of 10">
+            <span class="stat-number gap-number gap-number--accent" data-target="5.8" data-decimals="1">0</span>
+            <span class="gap-comparison__unit gap-comparison__unit--accent" aria-hidden="true">/10</span>
+          </div>
+          <p class="gap-comparison__sublabel">Actual quiz score</p>
+        </div>
+
+      </div>
+
+      <p class="gap-comparison__footnote reveal">
+        Based on 38 survey respondents &mdash; Fontys ICT, March–April 2026
+      </p>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4 — PLATFORM TRUST
+  ============================================================ -->
+  <section class="section section--trust" id="platformtrust" aria-labelledby="trust-title">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Platform Trust</p>
+        <h2 class="section__title" id="trust-title">
+          TikTok tops the<br />distrust list — by far.
+        </h2>
+        <p class="section__subtitle">
+          When asked which platform they trust the least for authentic content,
+          6 in 10 respondents pointed to TikTok without hesitation.
+        </p>
+      </div>
+
+      <div class="chart-wrap reveal">
+        <canvas id="platformTrustChart" height="280"
+          role="img" aria-label="Platform distrust: TikTok 61%, X 24%, Instagram 5%, WhatsApp 5%, YouTube 5%"></canvas>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5 — REAL OR AI? QUIZ
+  ============================================================ -->
+  <section class="section section--quiz" id="quiz" aria-labelledby="quiz-title">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Interactive</p>
+        <h2 class="section__title" id="quiz-title">Real or AI?</h2>
+        <p class="section__subtitle">
+          Click each image to reveal whether it's a real photograph or AI-generated.
+          The survey average was <strong>5.8/10</strong> — can you beat it?
+        </p>
+      </div>
+
+      <div class="quiz-score-bar reveal" id="quizScoreBar" aria-live="polite" aria-label="Quiz progress">
+        <span class="quiz-score-bar__label">Revealed</span>
+        <span class="quiz-score-bar__value" id="quizScoreLive">0 / 6</span>
+      </div>
+
+      <!-- Populated by quiz.js -->
+      <div class="quiz-grid" id="quizGrid" role="list" aria-label="Quiz image cards"></div>
+
+      <!-- Result panel (hidden until quiz complete) -->
+      <div class="quiz-result" id="quizResult" role="region" aria-label="Quiz result" aria-live="polite">
+        <div class="quiz-result__inner">
+
+          <p class="quiz-result__eyebrow">Your result</p>
+
+          <div class="quiz-result__score-wrap" aria-label="Final score">
+            <span class="quiz-result__score-num" id="quizScoreValue">0</span>
+            <span class="quiz-result__score-denom" aria-hidden="true">/6</span>
+          </div>
+
+          <p class="quiz-result__message" id="quizMessage"></p>
+
+          <div class="quiz-result__vs" aria-label="Score comparison">
+
+            <div class="quiz-result__vs-row">
+              <span class="quiz-result__vs-label">You</span>
+              <div class="quiz-result__vs-track" aria-hidden="true">
+                <div class="quiz-result__vs-bar" id="quizYouBar"></div>
+              </div>
+              <span class="quiz-result__vs-value" id="quizYouValue"></span>
+            </div>
+
+            <div class="quiz-result__vs-row">
+              <span class="quiz-result__vs-label quiz-result__vs-label--avg">Survey avg.</span>
+              <div class="quiz-result__vs-track" aria-hidden="true">
+                <div class="quiz-result__vs-bar quiz-result__vs-bar--avg"
+                  id="quizAvgBar"
+                  style="width:0; transition: width 1s cubic-bezier(0.16,1,0.3,1) 0.6s;"></div>
+              </div>
+              <span class="quiz-result__vs-value quiz-result__vs-value--avg">5.8/10</span>
+            </div>
+
+          </div>
+
+          <button class="btn btn--outline" id="quizRetry">Try again &#8635;</button>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 6 — FINDINGS (3 charts)
+  ============================================================ -->
+  <section class="section section--findings" id="findings" aria-labelledby="findings-title">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">Survey Findings</p>
+        <h2 class="section__title" id="findings-title">The data, unpacked.</h2>
+      </div>
+
+      <div class="charts-grid">
+
+        <div class="chart-card reveal reveal-left">
+          <p class="chart-card__eyebrow">Score distribution</p>
+          <h3 class="chart-card__title">How people scored</h3>
+          <p class="chart-card__sub">% of respondents per score (out of 10)</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="scoreDistChart"
+              role="img" aria-label="Score distribution bar chart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card reveal">
+          <p class="chart-card__eyebrow">AI content limits</p>
+          <h3 class="chart-card__title">What rules do people want?</h3>
+          <p class="chart-card__sub">% of respondents by attitude toward AI content</p>
+          <div class="chart-card__canvas-wrap chart-card__canvas-wrap--donut">
+            <canvas id="aiLimitChart"
+              role="img" aria-label="AI content attitude donut chart"></canvas>
+          </div>
+          <div class="chart-legend" id="aiLimitLegend" role="list" aria-label="Chart legend"></div>
+        </div>
+
+        <div class="chart-card reveal reveal-right">
+          <p class="chart-card__eyebrow">Platform perception</p>
+          <h3 class="chart-card__title">Where is most AI content?</h3>
+          <p class="chart-card__sub">% who associate each platform with AI content</p>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="platformAIChart"
+              role="img" aria-label="Platform AI perception bar chart"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 7 — PEAK PREDICTION
+  ============================================================ -->
+  <section class="section section--peak" id="peakprediction" aria-labelledby="peak-title">
+    <div class="container">
+
+      <div class="section__header reveal">
+        <p class="section__eyebrow">AI Trajectory</p>
+        <h2 class="section__title" id="peak-title">
+          When will AI content<br />hit its ceiling?
+        </h2>
+        <p class="section__subtitle">
+          Almost half think we're 1–2 years from peak AI on social media.
+          Nearly 1 in 5 believes it will never peak.
+        </p>
+      </div>
+
+      <div class="timeline reveal" id="timeline"
+        role="figure" aria-label="Peak AI prediction timeline">
+        <div class="timeline__track">
+          <div class="timeline__line" aria-hidden="true"></div>
+          <!-- Rendered by main.js -->
+          <div class="timeline__nodes" id="timelineNodes"></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 8 — CALL TO ACTION
+  ============================================================ -->
+  <section class="section section--cta" id="cta" aria-labelledby="cta-title">
+
+    <div class="cta__bg-text" aria-hidden="true">TELL</div>
+
+    <div class="container">
+      <div class="cta__inner">
+
+        <p class="section__eyebrow reveal">The Takeaway</p>
+
+        <h2 class="cta__headline reveal" id="cta-title">
+          47% is fine with AI content &mdash;<br />
+          <em>as long as it's labeled.</em>
+        </h2>
+
+        <p class="cta__question reveal">Are platforms doing that?</p>
+
+        <p class="cta__body reveal">
+          The data tells a clear story: people aren't opposed to AI-generated content.
+          They just want transparency. Label it. Own it. Let the audience decide.
+        </p>
+
+        <div class="cta__key-stats reveal">
+
+          <div class="cta__key-stat">
+            <div class="cta__key-stat-num" aria-label="47 percent">
+              <span class="stat-number" data-target="47">0</span>
+              <span aria-hidden="true">%</span>
+            </div>
+            <p>fine with labeled AI</p>
+          </div>
+
+          <div class="cta__key-stat">
+            <div class="cta__key-stat-num" aria-label="76 percent">
+              <span class="stat-number" data-target="76">0</span>
+              <span aria-hidden="true">%</span>
+            </div>
+            <p>have corrected someone</p>
+          </div>
+
+          <div class="cta__key-stat">
+            <div class="cta__key-stat-num" aria-label="61 percent">
+              <span class="stat-number" data-target="61">0</span>
+              <span aria-hidden="true">%</span>
+            </div>
+            <p>distrust TikTok most</p>
+          </div>
+
+        </div>
+
+        <div class="cta__actions reveal">
+          <button class="btn btn--primary" id="shareBtn" aria-label="Share this study">
+            <span>Share this study</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              aria-hidden="true">
+              <circle cx="18" cy="5" r="3"/>
+              <circle cx="6" cy="12" r="3"/>
+              <circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
+          <a href="#hero" class="btn btn--ghost">Back to top &uarr;</a>
+        </div>
+
+        <p class="cta__credit reveal">
+          A research project by Fontys ICT students &middot; 2026
+        </p>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__brand">You Can't Tell</span>
+        <span class="footer__sep" aria-hidden="true">&middot;</span>
+        <span class="footer__meta">38 respondents &middot; Fontys ICT &middot; March–April 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       CDN DEPENDENCIES
+  ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+
+  <!-- ============================================================
+       APP SCRIPTS (order matters)
+  ============================================================ -->
+  <script src="js/lenis.js"></script>
+  <script src="js/countup.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/scroll.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "meta": {
+    "totalRespondents": 38,
+    "surveyDate": "March - April 2026"
+  },
+  "quizPerformance": {
+    "avgSelfAssessedScore": 4.0,
+    "avgActualQuizScore": 5.8,
+    "gapExplainer": "People rated themselves 4.0 out of 10, but scored an average of 5.8 out of 10 on the actual quiz.",
+    "scoreDistribution": {
+      "2": 16, "3": 26, "4": 13, "5": 32, "6": 11, "7": 3
+    },
+    "selfScoreDistribution": {
+      "2": 5, "3": 16, "4": 50, "5": 29
+    },
+    "percentageWhoScored4OrBelow": 55,
+    "percentageWhoScored6OrAbove": 13
+  },
+  "platformTrustLeast": {
+    "TikTok": 61, "X": 24, "Instagram": 5, "WhatsApp": 5, "YouTube": 5
+  },
+  "platformMostAI": {
+    "TikTok": 61, "X": 16, "Instagram": 13, "Facebook": 5
+  },
+  "aiPeakPrediction": {
+    "1 - 2 Years": 47, "3 - 5 Years": 29, "Never": 18, "Now": 5
+  },
+  "everPointedOutFake": {
+    "yes": 76, "no": 24
+  },
+  "aiContentLimit": {
+    "As long as it is labeled, everything is fine": 47,
+    "Entertainment is allowed, news never": 26,
+    "I just don't want to see it at all": 13,
+    "I haven't set a limit yet": 13
+  },
+  "keyFindings": [
+    { "stat": "4.0 vs 5.8", "label": "Self-assessed score vs actual quiz score (out of 10)" },
+    { "stat": "61%", "label": "trusts TikTok the least" },
+    { "stat": "76%", "label": "has had to point out fake content to someone" },
+    { "stat": "47%", "label": "thinks AI content will peak within 1-2 years" },
+    { "stat": "47%", "label": "is fine with AI content as long as it is labeled" }
+  ]
+}
