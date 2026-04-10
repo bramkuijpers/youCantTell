@@ -224,8 +224,8 @@ function initAiLimitChart() {
 }
 
 /* ------------------------------------------------------------------
-   4. PLATFORM AI CONTENT CHART
-   Vertical bar — which platform has the most AI content?
+   4. PLATFORM TRUST LEAST CHART
+   Vertical bar — which platform do people trust least with AI content?
    Data: TikTok 61%, X 16%, Instagram 13%, Facebook 5%
    ------------------------------------------------------------------ */
 function initPlatformAIChart() {
@@ -270,7 +270,7 @@ function initPlatformAIChart() {
         tooltip: {
           callbacks: {
             label: function (ctx) {
-              return ' ' + ctx.parsed.y + '% associate this platform with AI content';
+              return ' ' + ctx.parsed.y + '% trusts this platform the least with AI content';
             },
           },
         },
