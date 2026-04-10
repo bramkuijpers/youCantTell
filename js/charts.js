@@ -144,7 +144,7 @@ function initScoreDistChart() {
           border: { display: false },
           title: {
             display: true,
-            text: 'Score out of 10',
+            text: 'Score out of 7',
             color: '#444240',
             font: { size: 11 },
           },
