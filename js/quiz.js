@@ -19,7 +19,6 @@ var QUIZ_DATA = [
     caption: 'Portrait in low light',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'The skin texture is unnaturally smooth and the chiaroscuro lighting is too perfectly dramatic for a candid shot.',
   },
   {
     id: 2,
@@ -27,7 +26,6 @@ var QUIZ_DATA = [
     caption: 'Burger close-up',
     isAI: false,
     reveal: 'Real Photo',
-    note: 'Natural depth of field, authentic food styling, and organic imperfections in the sesame seeds and lettuce edges.',
   },
   {
     id: 3,
@@ -35,7 +33,6 @@ var QUIZ_DATA = [
     caption: 'Subway station',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'The motion blur pattern and noise distribution are inconsistent with real long-exposure photography.',
   },
   {
     id: 4,
@@ -43,7 +40,6 @@ var QUIZ_DATA = [
     caption: 'Bowl on wooden surface',
     isAI: false,
     reveal: 'Real Photo',
-    note: 'The ceramic glaze, natural wood grain variation, and ambient light reflection are all authentically captured.',
   },
   {
     id: 5,
@@ -51,7 +47,6 @@ var QUIZ_DATA = [
     caption: 'Chickens in a field',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'The feather detail and grass blades show characteristic AI generation artifacts — too sharp, too even.',
   },
   {
     id: 6,
@@ -59,7 +54,6 @@ var QUIZ_DATA = [
     caption: 'Dartboard close-up',
     isAI: true,
     reveal: 'AI Generated',
-    note: 'The wire dividers are impossibly uniform and the cork texture is too perfect. No real board looks this pristine.',
   },
 ];
 

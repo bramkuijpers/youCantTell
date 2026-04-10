@@ -8,7 +8,7 @@
     "avgSelfAssessedScaleMax": 5,
     "avgSelfAssessedNormalized": 8.0,
     "avgActualQuizScore": 5.8,
-    "gapExplainer": "People rated themselves 4 out of 5 (= 8/10 normalized), but only scored an average of 5.8 out of 10 on the actual quiz — an overestimation of 2.2 points.",
+    "gapExplainer": "People rated themselves 8 out of 10, but only scored an average of 5.8 out of 10 on the actual quiz — an overestimation of 2.2 points.",
     "scoreDistribution": {
       "2": 16, "3": 26, "4": 13, "5": 32, "6": 11, "7": 3
     },
