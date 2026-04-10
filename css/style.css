@@ -142,8 +142,9 @@ body {
 .section__eyebrow::before {
   content: '';
   display: inline-block;
-  width: 24px;
-  height: 1px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
   background: var(--color-accent-purple);
   flex-shrink: 0;
 }
